@@ -163,21 +163,9 @@
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
-        }
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
         }
         @keyframes rotate {
             0% { transform: rotate(0deg); }
@@ -341,18 +329,18 @@
             transform: rotate(-45deg) translate(6px, -6px);
         }
 
-        /* Hero */
+        /* Hero - Updated Alignment */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
             position: relative;
             background: linear-gradient(135deg, #0a0a0a 0%, #151515 50%, #0a0a0a 100%);
             padding: 120px 20px 80px;
             overflow: hidden;
             height: auto;
+            width: 100%;
         }
         .hero::before {
             content: '';
@@ -368,6 +356,12 @@
             position: relative;
             z-index: 1;
             max-width: 850px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
             animation: fadeInUp 1s ease;
             padding: 0 10px;
             height: auto;
@@ -378,11 +372,14 @@
             max-width: 60vw;
             max-height: 60vw;
             object-fit: contain;
-            margin-bottom: 25px;
+            display: block;
+            margin: 0 auto 25px auto;
             animation: float 3s ease-in-out infinite;
         }
         .hero-badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background: rgba(212, 175, 55, 0.12);
             border: 1.5px solid rgba(212, 175, 55, 0.4);
             padding: 8px 20px;
@@ -391,7 +388,7 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 25px;
+            margin: 0 auto 25px auto;
             font-weight: 500;
             font-family: var(--font-accent);
             backdrop-filter: blur(5px);
@@ -413,6 +410,7 @@
             animation: fadeInUp 1s ease 0.5s both, gradientShift 3s ease infinite;
             word-wrap: break-word;
             overflow-wrap: break-word;
+            text-align: center;
         }
         .hero h1 .highlight {
             display: block;
@@ -434,12 +432,15 @@
             animation: fadeInUp 1s ease 0.7s both;
             word-wrap: break-word;
             overflow-wrap: break-word;
+            text-align: center;
         }
         .hero-buttons {
             display: flex;
             gap: 15px;
             justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
+            width: 100%;
             animation: fadeInUp 1s ease 0.9s both;
         }
         .btn-primary,
@@ -455,6 +456,7 @@
             font-family: var(--font-accent);
             white-space: nowrap;
             max-width: 100%;
+            text-align: center;
         }
         .btn-primary {
             background: var(--gold-gradient);
@@ -536,7 +538,7 @@
             transform: translateX(0);
         }
 
-        /* Sections - No nested scrolling */
+        /* Sections */
         section {
             padding: 80px 0;
             position: relative;
@@ -1383,8 +1385,8 @@
                 padding: 100px 15px 60px;
             }
             .hero-logo {
-                width: 90px;
-                height: 90px;
+                width: 100px;
+                height: 100px;
             }
         }
 
@@ -1396,8 +1398,8 @@
                 padding: 90px 10px 50px;
             }
             .hero-logo {
-                width: 70px;
-                height: 70px;
+                width: 80px;
+                height: 80px;
             }
             .about-text .features {
                 grid-template-columns: 1fr;
@@ -1710,7 +1712,6 @@
                     <h3>Contact Us</h3>
                     <p>Ready to experience luxury grooming at home? Reach out to us on WhatsApp and we'll confirm your appointment right away.</p>
                     
-                    <!-- Single WhatsApp Contact Card -->
                     <a href="https://wa.me/923019099039" target="_blank" class="whatsapp-contact-card">
                         <div class="whatsapp-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -1839,7 +1840,7 @@
             });
         });
 
-        // Scroll Animation - Intersection Observer
+        // Scroll Animation
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -30px 0px'
@@ -1857,7 +1858,7 @@
             observer.observe(el);
         });
 
-        // WhatsApp Float Button - Show only when Booking section is visible
+        // WhatsApp Float Button
         const whatsappFloat = document.getElementById('whatsappFloat');
         const bookingSection = document.getElementById('booking');
 
