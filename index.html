@@ -46,6 +46,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
@@ -85,24 +86,27 @@
         }
         .preloader .loader-content {
             text-align: center;
+            animation: fadeInUp 0.8s ease;
         }
-        .preloader .loader-icon {
-            font-size: 4rem;
+        .preloader .loader-logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 25px;
             animation: pulse 1.5s infinite;
-            margin-bottom: 20px;
+            object-fit: contain;
         }
         .preloader .loader-text {
             font-family: var(--font-heading);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--gold);
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             font-weight: 700;
         }
         .preloader .loader-bar {
-            width: 200px;
+            width: 220px;
             height: 3px;
             background: rgba(212, 175, 55, 0.2);
-            margin: 20px auto 0;
+            margin: 25px auto 0;
             border-radius: 3px;
             overflow: hidden;
         }
@@ -110,15 +114,55 @@
             height: 100%;
             background: var(--gold-gradient);
             width: 0%;
-            animation: loading 1.5s ease forwards;
+            animation: loading 1.8s ease forwards;
         }
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 0.85; }
         }
         @keyframes loading {
             0% { width: 0%; }
             100% { width: 100%; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes borderGlow {
+            0%, 100% { border-color: rgba(212, 175, 55, 0.3); box-shadow: 0 0 20px rgba(212, 175, 55, 0.1); }
+            50% { border-color: rgba(212, 175, 55, 0.7); box-shadow: 0 0 40px rgba(212, 175, 55, 0.3); }
         }
 
         /* Header */
@@ -133,6 +177,7 @@
             transition: all var(--transition-fast);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            animation: fadeInDown 0.8s ease;
         }
         header.scrolled {
             background: rgba(10, 10, 10, 0.98);
@@ -142,26 +187,40 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 18px 20px;
+            padding: 15px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
         .logo {
-            font-family: var(--font-heading);
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 12px;
             text-decoration: none;
-            letter-spacing: 1px;
-            line-height: 1.2;
             transition: transform var(--transition-fast);
         }
         .logo:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
-        .logo span {
+        .logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            transition: transform var(--transition-fast);
+        }
+        .logo:hover img {
+            transform: rotate(-5deg) scale(1.1);
+        }
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        .logo-text span {
             display: block;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             letter-spacing: 3px;
             font-family: var(--font-accent);
             font-weight: 400;
@@ -272,6 +331,14 @@
             position: relative;
             z-index: 1;
             max-width: 850px;
+            animation: fadeInUp 1s ease;
+        }
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
         }
         .hero-badge {
             display: inline-block;
@@ -287,6 +354,7 @@
             font-weight: 500;
             font-family: var(--font-accent);
             backdrop-filter: blur(5px);
+            animation: fadeInDown 1.2s ease 0.3s both;
         }
         .hero h1 {
             font-family: var(--font-heading);
@@ -299,6 +367,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: 1px;
+            animation: fadeInUp 1s ease 0.5s both;
         }
         .hero h1 .highlight {
             display: block;
@@ -317,12 +386,14 @@
             font-weight: 300;
             line-height: 1.8;
             letter-spacing: 0.5px;
+            animation: fadeInUp 1s ease 0.7s both;
         }
         .hero-buttons {
             display: flex;
             gap: 18px;
             justify-content: center;
             flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.9s both;
         }
         .btn-primary {
             background: var(--gold-gradient);
@@ -338,6 +409,21 @@
             border: 2px solid transparent;
             box-shadow: 0 8px 25px var(--shadow-gold);
             font-family: var(--font-accent);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn-primary:hover::before {
+            left: 100%;
         }
         .btn-primary:hover {
             background: transparent;
@@ -365,6 +451,48 @@
             transform: translateY(-3px);
             border-color: var(--gold);
             box-shadow: 0 10px 30px var(--shadow-gold);
+        }
+
+        /* Scroll Animation Classes */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .scroll-animate-delay-1 { transition-delay: 0.1s; }
+        .scroll-animate-delay-2 { transition-delay: 0.2s; }
+        .scroll-animate-delay-3 { transition-delay: 0.3s; }
+        .scroll-animate-delay-4 { transition-delay: 0.4s; }
+        .scroll-animate-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .scroll-animate-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .scroll-animate-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .scroll-animate-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .scroll-animate-zoom {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .scroll-animate-zoom.visible {
+            opacity: 1;
+            transform: scale(1);
         }
 
         /* Sections */
@@ -459,11 +587,13 @@
             border-radius: var(--radius-md);
             border: 1px solid var(--border-gold);
             transition: all var(--transition-fast);
+            cursor: pointer;
         }
         .feature-item:hover {
             border-color: var(--border-gold-strong);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            animation: borderGlow 1.5s ease-in-out;
         }
         .feature-item .icon {
             width: 42px;
@@ -475,6 +605,10 @@
             justify-content: center;
             font-size: 1.3rem;
             flex-shrink: 0;
+            transition: transform var(--transition-fast);
+        }
+        .feature-item:hover .icon {
+            transform: rotate(360deg);
         }
         .about-image {
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.03));
@@ -484,10 +618,10 @@
             align-items: center;
             justify-content: center;
             border: 1.5px solid var(--border-gold);
-            font-size: 6rem;
             position: relative;
             overflow: hidden;
             transition: all var(--transition-medium);
+            padding: 30px;
         }
         .about-image:hover {
             border-color: var(--border-gold-strong);
@@ -503,9 +637,13 @@
             background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
             animation: rotate 20s linear infinite;
         }
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .about-image img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
+            animation: float 3s ease-in-out infinite;
         }
 
         /* Services */
@@ -525,6 +663,7 @@
             transition: all var(--transition-fast);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
         .service-card::before {
             content: '';
@@ -555,6 +694,7 @@
         }
         .service-card:hover .service-icon {
             transform: scale(1.15) rotate(5deg);
+            animation: pulse 1s ease;
         }
         .service-card h3 {
             font-family: var(--font-heading);
@@ -608,6 +748,7 @@
             border-color: var(--gold);
             box-shadow: 0 0 50px var(--shadow-gold);
             transform: scale(1.03);
+            animation: borderGlow 3s ease-in-out infinite;
         }
         .package-card:hover {
             transform: translateY(-12px);
@@ -633,6 +774,7 @@
             box-shadow: 0 5px 15px var(--shadow-gold);
             font-family: var(--font-accent);
             white-space: nowrap;
+            animation: pulse 2s ease-in-out infinite;
         }
         .package-card h3 {
             font-family: var(--font-heading);
@@ -746,8 +888,9 @@
         }
         .booking-info .contact-item:hover {
             border-color: var(--border-gold-strong);
-            transform: translateX(5px);
+            transform: translateX(10px);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            animation: borderGlow 1.5s ease-in-out;
         }
         .booking-info .contact-item .icon {
             width: 48px;
@@ -759,6 +902,10 @@
             justify-content: center;
             font-size: 1.4rem;
             flex-shrink: 0;
+            transition: transform var(--transition-fast);
+        }
+        .booking-info .contact-item:hover .icon {
+            transform: scale(1.1) rotate(10deg);
         }
         .booking-info .contact-item strong {
             color: var(--white);
@@ -830,6 +977,7 @@
             border-color: var(--gold);
             background: rgba(212, 175, 55, 0.06);
             box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
         }
         .form-group input::placeholder,
         .form-group textarea::placeholder {
@@ -861,6 +1009,21 @@
             font-family: var(--font-accent);
             box-shadow: 0 8px 25px var(--shadow-gold);
             margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn-submit:hover::before {
+            left: 100%;
         }
         .btn-submit:hover {
             transform: translateY(-3px);
@@ -878,14 +1041,26 @@
             text-align: center;
         }
         .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .footer-logo img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            animation: float 3s ease-in-out infinite;
+        }
+        .footer-logo-text {
             font-family: var(--font-heading);
             font-size: 2rem;
             color: var(--gold);
-            margin-bottom: 18px;
             font-weight: 700;
             letter-spacing: 1px;
         }
-        .footer-logo span {
+        .footer-logo-text span {
             display: block;
             font-size: 0.7rem;
             letter-spacing: 3px;
@@ -917,7 +1092,7 @@
         .footer-social a:hover {
             color: var(--gold);
             border-color: var(--gold);
-            transform: translateY(-5px);
+            transform: translateY(-5px) rotate(360deg);
             box-shadow: 0 8px 20px var(--shadow-gold);
         }
         .footer-bottom {
@@ -960,10 +1135,6 @@
             height: 34px;
             fill: white;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
 
         /* Responsive */
         @media (max-width: 968px) {
@@ -980,6 +1151,10 @@
             }
             .hero h1 .highlight {
                 font-size: 1.5rem;
+            }
+            .hero-logo {
+                width: 90px;
+                height: 90px;
             }
         }
 
@@ -1015,6 +1190,10 @@
             }
             .hero {
                 padding: 120px 20px 60px;
+            }
+            .hero-logo {
+                width: 80px;
+                height: 80px;
             }
             section {
                 padding: 60px 0;
@@ -1054,6 +1233,17 @@
             .package-card.featured:hover {
                 transform: translateY(-12px);
             }
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            .logo-text span {
+                font-size: 0.5rem;
+                letter-spacing: 2px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1076,6 +1266,10 @@
             .container {
                 padding: 0 15px;
             }
+            .hero-logo {
+                width: 70px;
+                height: 70px;
+            }
         }
     </style>
 </head>
@@ -1084,7 +1278,7 @@
     <!-- Preloader -->
     <div class="preloader" id="preloader">
         <div class="loader-content">
-            <div class="loader-icon">💈</div>
+            <img src="logo.png" alt="DNandCUT Logo" class="loader-logo">
             <div class="loader-text">DNandCUT</div>
             <div class="loader-bar">
                 <div class="loader-bar-fill"></div>
@@ -1096,8 +1290,11 @@
     <header id="header">
         <div class="header-content">
             <a href="#home" class="logo">
-                DNandCUT
-                <span>Grooming Studio Luxury</span>
+                <img src="logo.png" alt="DNandCUT Grooming Studio Luxury Logo">
+                <div class="logo-text">
+                    DNandCUT
+                    <span>Grooming Studio Luxury</span>
+                </div>
             </a>
             <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span>
@@ -1118,6 +1315,7 @@
     <!-- Hero -->
     <section class="hero" id="home">
         <div class="hero-content">
+            <img src="logo.png" alt="DNandCUT Grooming Studio Luxury Logo" class="hero-logo">
             <div class="hero-badge">🏠 Premium Home Service</div>
             <h1>
                 DNandCUT
@@ -1134,37 +1332,37 @@
     <!-- About -->
     <section class="about" id="about">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title scroll-animate">
                 <h2>Why <span>DNandCUT</span></h2>
                 <div class="line"></div>
                 <p>Luxury grooming, redefined for the modern gentleman</p>
             </div>
             <div class="about-content">
-                <div class="about-text">
+                <div class="about-text scroll-animate-left">
                     <h3>The Luxury of Grooming at Home</h3>
                     <p>DNandCUT Grooming Studio Luxury brings the premium salon experience directly to you. No waiting rooms, no travel — just professional, personalized grooming in the privacy and comfort of your own home.</p>
                     <p>Our expert stylists use only the finest products and techniques to ensure you look and feel your absolute best, whether it's for a special occasion or your regular grooming routine.</p>
                     <div class="features">
-                        <div class="feature-item">
+                        <div class="feature-item scroll-animate scroll-animate-delay-1">
                             <div class="icon">🏠</div>
                             <span>Home Service</span>
                         </div>
-                        <div class="feature-item">
+                        <div class="feature-item scroll-animate scroll-animate-delay-2">
                             <div class="icon">⏰</div>
                             <span>Available 24 Hours</span>
                         </div>
-                        <div class="feature-item">
+                        <div class="feature-item scroll-animate scroll-animate-delay-3">
                             <div class="icon">💎</div>
                             <span>Premium Products</span>
                         </div>
-                        <div class="feature-item">
+                        <div class="feature-item scroll-animate scroll-animate-delay-4">
                             <div class="icon">👨‍🎨</div>
                             <span>Expert Stylists</span>
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
-                    💈
+                <div class="about-image scroll-animate-right">
+                    <img src="logo.png" alt="DNandCUT Logo">
                 </div>
             </div>
         </div>
@@ -1173,55 +1371,55 @@
     <!-- Services -->
     <section class="services" id="services">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title scroll-animate">
                 <h2>Our <span>Services</span></h2>
                 <div class="line"></div>
                 <p>Premium grooming services tailored to your needs</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card scroll-animate scroll-animate-delay-1">
                     <div class="service-icon">💇</div>
                     <h3>Haircut</h3>
                     <div class="price"><span>PKR 2,000</span></div>
                     <p>Professional styling tailored to your face shape and personal style.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-animate scroll-animate-delay-2">
                     <div class="service-icon">👦</div>
                     <h3>Children's Cuts</h3>
                     <div class="price"><span>PKR 1,500</span></div>
                     <p>Gentle and stylish haircuts designed specifically for kids.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-animate scroll-animate-delay-3">
                     <div class="service-icon">🧔</div>
                     <h3>Beard Trim</h3>
                     <div class="price"><span>PKR 1,500</span></div>
                     <p>Precision beard styling and shaping for a sharp, clean look.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-animate scroll-animate-delay-1">
                     <div class="service-icon">💅</div>
                     <h3>Men's Manicure</h3>
                     <div class="price"><span>PKR 2,000</span></div>
                     <p>Neat, well-groomed hands with professional nail care.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-animate scroll-animate-delay-2">
                     <div class="service-icon">🦶</div>
                     <h3>Pedicure</h3>
                     <div class="price"><span>PKR 2,000</span></div>
                     <p>Clean nails and soft, healthy skin for your feet.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-animate scroll-animate-delay-3">
                     <div class="service-icon">✨</div>
                     <h3>Facial</h3>
                     <div class="price">From <span>PKR 3,000</span></div>
                     <p>Professional facial treatments using premium skincare brands.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-animate scroll-animate-delay-1">
                     <div class="service-icon">💆</div>
                     <h3>Body Massage</h3>
                     <div class="price"><span>PKR 4,500</span></div>
                     <p>Relaxing 45-minute full body massage to unwind and de-stress.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-animate scroll-animate-delay-2">
                     <div class="service-icon">🌟</div>
                     <h3>Keratin Treatment</h3>
                     <div class="price">From <span>PKR 8,000</span></div>
@@ -1234,13 +1432,13 @@
     <!-- Packages -->
     <section class="packages" id="packages">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title scroll-animate">
                 <h2>Luxury <span>Groom Packages</span></h2>
                 <div class="line"></div>
                 <p>Three exclusive tiers designed for the ultimate grooming experience</p>
             </div>
             <div class="packages-grid">
-                <div class="package-card">
+                <div class="package-card scroll-animate scroll-animate-delay-1">
                     <h3>Silver Package</h3>
                     <div class="package-price">PKR 13,000 <span>starting</span></div>
                     <ul>
@@ -1251,7 +1449,7 @@
                     </ul>
                     <a href="https://wa.me/923019099039?text=Hello%20DNandCUT%2C%20I%20want%20to%20book%20the%20Silver%20Package%20(PKR%2013%2C000)." target="_blank" class="btn-package">Book Now</a>
                 </div>
-                <div class="package-card featured">
+                <div class="package-card featured scroll-animate scroll-animate-delay-2">
                     <div class="package-badge">Most Popular</div>
                     <h3>Gold Package</h3>
                     <div class="package-price">PKR 18,000 <span>starting</span></div>
@@ -1264,7 +1462,7 @@
                     </ul>
                     <a href="https://wa.me/923019099039?text=Hello%20DNandCUT%2C%20I%20want%20to%20book%20the%20Gold%20Package%20(PKR%2018%2C000)." target="_blank" class="btn-package">Book Now</a>
                 </div>
-                <div class="package-card">
+                <div class="package-card scroll-animate scroll-animate-delay-3">
                     <h3>Platinum Package</h3>
                     <div class="package-price">PKR 25,000 <span>starting</span></div>
                     <ul>
@@ -1284,13 +1482,13 @@
     <!-- Booking -->
     <section class="booking" id="booking">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title scroll-animate">
                 <h2>Book Your <span>Appointment</span></h2>
                 <div class="line"></div>
                 <p>We come to you — anywhere, anytime</p>
             </div>
             <div class="booking-wrapper">
-                <div class="booking-info">
+                <div class="booking-info scroll-animate-left">
                     <h3>Get in Touch</h3>
                     <p>Ready to experience luxury grooming at home? Contact us or fill out the booking form and we'll confirm your appointment right away.</p>
                     <div class="contact-item">
@@ -1322,7 +1520,7 @@
                         </div>
                     </div>
                 </div>
-                <form class="booking-form" id="bookingForm">
+                <form class="booking-form scroll-animate-right" id="bookingForm">
                     <h3>Book Your Appointment</h3>
                     <div class="form-group">
                         <label for="name">Full Name *</label>
@@ -1371,8 +1569,11 @@
     <footer>
         <div class="container">
             <div class="footer-logo">
-                DNandCUT
-                <span>Grooming Studio Luxury</span>
+                <img src="logo.png" alt="DNandCUT Grooming Studio Luxury Logo">
+                <div class="footer-logo-text">
+                    DNandCUT
+                    <span>Grooming Studio Luxury</span>
+                </div>
             </div>
             <p style="color: var(--gray); margin-bottom: 20px; font-weight: 300;">Premium Home Service Grooming</p>
             <div class="footer-social">
@@ -1405,7 +1606,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('preloader').classList.add('hidden');
-            }, 1000);
+            }, 1200);
         });
 
         // Header scroll effect
@@ -1432,6 +1633,25 @@
                 navLinks.classList.remove('active');
                 hamburger.classList.remove('active');
             });
+        });
+
+        // Scroll Animation - Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with scroll-animate classes
+        document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-zoom').forEach(el => {
+            observer.observe(el);
         });
 
         // Booking form submission - Opens WhatsApp with pre-filled message
@@ -1473,7 +1693,7 @@
             // Open WhatsApp with the pre-filled message
             window.open(`https://wa.me/923019099039?text=${message}`, '_blank');
             
-            // Optional: Show a subtle confirmation (not blocking)
+            // Visual feedback on button
             const btn = document.querySelector('.btn-submit');
             const originalText = btn.textContent;
             btn.textContent = '✓ Opening WhatsApp...';
